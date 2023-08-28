@@ -142,14 +142,14 @@ jobs:
       - build_gateway_and_push_to_docker_hub
     steps:
     - name: Checkout repo
-      uses: actions/chekout@v3
+      uses: actions/checkout@v3
     - name: Copy docker-compose.yml via ssh
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{secrets.SSH_PASSPHRASE }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "docker-compose.production.yml"
         target: "taski"
     - name: Executing remote ssh command tp deploy
